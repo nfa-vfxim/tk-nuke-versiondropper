@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 # Thanks to http://www.nukepedia.com/python/nodegraph/shotgundropper/ for partially the code and explanation :)
-# Created by Gilles Vink
 
 import sgtk
 import os
@@ -119,13 +118,19 @@ class NukeVersionDropperHandler():
         # Retrieving ShotGrid data
         sg = self.sg
 
-        columns = [ 'sg_path_to_movie', 'sg_first_frame', 'sg_last_frame' ]
+        columns = [ 'sg_path_to_movie', 'sg_path_to_frames', 'sg_first_frame', 'sg_last_frame' ]
         filters = [['id', 'is', versionID]]
 
         libraryAsset = sg.find_one('Version', filters, columns)
 
-        filePath = libraryAsset.get('sg_path_to_movie')
+        # Use files field if there is any data
+        filePath = libraryAsset.get('sg_path_to_frames')
 
+        # Otherwise use the movie
+        if filePath == None:
+            filePath = libraryAsset.get('sg_path_to_movie')
+
+        # Set initial variable
         fileType = 'file'
 
         if 'exr' in filePath:
@@ -135,6 +140,7 @@ class NukeVersionDropperHandler():
 
         readNode = nuke.createNode('Read')
         readNode['file'].fromUserText(filePath)
+        readNode['localizationPolicy'].setValue(2)
 
         if fileType == 'sequence':
             readNode['first'].setValue(startFrame)
