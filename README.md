@@ -15,13 +15,13 @@ The credentials to search for the item will be the one from the session itself. 
 
 ## How to install
 ### Add tk-nuke-versiondropper to `app_locations.yml`
-Add the following lines to `app_locations.yml` in your config:
+Add the following lines to `app_locations.yml` in your config ([example](https://github.com/nfa-vfxim/nfa-shotgun-configuration/blob/003162907668fce1ab575a3a0738ff8ca608c5b3/env/includes/app_locations.yml#L257 "Example in the Filmacademy ShotGrid config")):
 ```buildoutcfg
 apps.tk-nuke-versiondropper.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-versiondropper
-  version: 0.1.1
+  version: 0.1.2
 ```
 
 ### 2. That's it :)

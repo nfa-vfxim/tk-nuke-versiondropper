@@ -25,14 +25,19 @@
 # expected fields in the configuration file for this engine
 configuration:
     exr_colorspace:
-          type: str
-          description: "Default colorspace for exr file sequences"
-          default_value: Utility - Linear - Rec.709
+      type: str
+      description: "Default colorspace for exr file sequences"
+      default_value: Utility - Linear - Rec.709
 
     movie_colorspace:
-          type: str
-          description: "Default colorspace for movie files"
-          default_value: Output - Rec.709
+      type: str
+      description: "Default colorspace for movie files"
+      default_value: Output - Rec.709
+
+    published_file_colorspace:
+      type: str
+      description: "Default colorspace for published files"
+      default_value: scene_linear
 
 # this app works in all engines - it does not contain
 # any host application specific commands
@@ -43,7 +48,7 @@ requires_shotgun_fields:
 
 # More verbose description of this item
 display_name: "Nuke Version Dropper"
-description: "Parses urls and allows dragging and dropping versions from within the ShotGrid webbrowser."
+description: "Parses urls and allows dragging and dropping versions/assets/shots/published files from within the ShotGrid webbrowser."
 
 requires_shotgun_version:
 requires_core_version: "v0.19.8"
