@@ -1,6 +1,6 @@
 [![Python 2.6 2.7 3.7](https://img.shields.io/badge/python-2.6%20%7C%202.7%20%7C%203.7-blue.svg)](https://www.python.org/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Linting](https://img.shields.io/badge/PEP8%20by-Hound%20CI-a873d1.svg)](https://houndci.com)
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 # Nuke Version Dropper
 
@@ -21,7 +21,15 @@ apps.tk-nuke-versiondropper.location:
   type: github_release
   organization: nfa-vfxim
   repository: tk-nuke-versiondropper
-  version: 0.1.2
+  version: 0.1.3
 ```
 
-### 2. That's it :)
+### 2. Add tk-nuke-versiondropper to `tk-nuke.yml`
+Add the following lines to `tk-nuke.yml` in your config ([example](https://github.com/nfa-vfxim/nfa-shotgun-configuration/blob/a172e698de5ea54cfd6a8743d9d501b69039885d/env/includes/settings/tk-nuke.yml#L132 "Example in the Filmacademy ShotGrid config"))
+```buildoutcfg
+settings.tk-nuke.project:
+  apps:
+    tk-nuke-versiondropper:
+      location: "@apps.tk-nuke-versiondropper.location"
+```
+### 3. That's it :)

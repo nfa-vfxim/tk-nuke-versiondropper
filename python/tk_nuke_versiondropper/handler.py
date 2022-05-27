@@ -128,6 +128,7 @@ class NukeVersionDropperHandler:
             "sg_first_frame",
             "sg_last_frame",
             "path",
+            "sg_frames_colorspace"
         ]
         filters = [["id", "is", publish_id]]
 
@@ -170,11 +171,15 @@ class NukeVersionDropperHandler:
             read_node["first"].setValue(start_frame)
             read_node["last"].setValue(last_frame)
 
-            if entity_type == "PublishedFile":
-                colorspace = self.published_file_colorspace
+            # We created a custom version field called 'sg_frames_colorspace' allowing us to specify the colorspace
+            # to use. If it is not used, we skip to the default colorspace defined in the pipeline config
+            colorspace = entity.get("sg_frames_colorspace")
+            if colorspace is None:
+                if entity_type == "PublishedFile":
+                    colorspace = self.published_file_colorspace
 
-            else:
-                colorspace = self.exr_colorspace
+                else:
+                    colorspace = self.exr_colorspace
 
             read_node["colorspace"].setValue(colorspace)
 
